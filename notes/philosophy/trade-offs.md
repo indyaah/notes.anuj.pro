@@ -1,6 +1,6 @@
 ---
 layout: page
-title: On trade-offs
+title: Trade-offs
 order: 1
 tags: [philosophy, decisions, learning]
 ---

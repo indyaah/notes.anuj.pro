@@ -1,4 +1,8 @@
 # Summary
+- [Home](/)
+- [All tags](/tags/all/)
+
+--- 
 
 - Philosophy
   - [On trade-offs](/notes/philosophy/trade-offs/)
@@ -8,7 +12,3 @@
   - [Editors and IDEs](/notes/tools/editors-and-ides/)
 - Effectiveness
   - [Deep work for engineers](/notes/effectiveness/deep-work/)
-
----
-- [All notes](/notes/all/)
-- [All tags](/tags/all/)

@@ -20,7 +20,30 @@ Browse all notes grouped by top-level topic.
         {% if p.tags and p.tags.size > 0 %}
           <span class="tag-list-inline">
             {% for t in p.tags %}
-              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+              {% assign _slug = t | slugify %}
+              {% assign _first = _slug | slice: 0, 1 %}
+              {% assign _c = 'c10' %}
+              {% assign _g1 = 'a,b' | split: ',' %}
+              {% assign _g2 = 'c,d' | split: ',' %}
+              {% assign _g3 = 'e,f' | split: ',' %}
+              {% assign _g4 = 'g,h' | split: ',' %}
+              {% assign _g5 = 'i,j' | split: ',' %}
+              {% assign _g6 = 'k,l' | split: ',' %}
+              {% assign _g7 = 'm,n' | split: ',' %}
+              {% assign _g8 = 'o,p,q' | split: ',' %}
+              {% assign _g9 = 'r,s,t,u' | split: ',' %}
+              {% assign _g10 = 'v,w,x,y,z' | split: ',' %}
+              {% if _g1 contains _first %}{% assign _c = 'c1' %}
+              {% elsif _g2 contains _first %}{% assign _c = 'c2' %}
+              {% elsif _g3 contains _first %}{% assign _c = 'c3' %}
+              {% elsif _g4 contains _first %}{% assign _c = 'c4' %}
+              {% elsif _g5 contains _first %}{% assign _c = 'c5' %}
+              {% elsif _g6 contains _first %}{% assign _c = 'c6' %}
+              {% elsif _g7 contains _first %}{% assign _c = 'c7' %}
+              {% elsif _g8 contains _first %}{% assign _c = 'c8' %}
+              {% elsif _g9 contains _first %}{% assign _c = 'c9' %}
+              {% else %}{% assign _c = 'c10' %}{% endif %}
+              <span class="tag-chip {{ _c }}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
             {% endfor %}
           </span>
         {% endif %}
@@ -45,7 +68,30 @@ Browse all notes grouped by top-level topic.
         {% if p.tags and p.tags.size > 0 %}
           <span class="tag-list-inline">
             {% for t in p.tags %}
-              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+              {% assign _slug = t | slugify %}
+              {% assign _first = _slug | slice: 0, 1 %}
+              {% assign _c = 'c10' %}
+              {% assign _g1 = 'a,b' | split: ',' %}
+              {% assign _g2 = 'c,d' | split: ',' %}
+              {% assign _g3 = 'e,f' | split: ',' %}
+              {% assign _g4 = 'g,h' | split: ',' %}
+              {% assign _g5 = 'i,j' | split: ',' %}
+              {% assign _g6 = 'k,l' | split: ',' %}
+              {% assign _g7 = 'm,n' | split: ',' %}
+              {% assign _g8 = 'o,p,q' | split: ',' %}
+              {% assign _g9 = 'r,s,t,u' | split: ',' %}
+              {% assign _g10 = 'v,w,x,y,z' | split: ',' %}
+              {% if _g1 contains _first %}{% assign _c = 'c1' %}
+              {% elsif _g2 contains _first %}{% assign _c = 'c2' %}
+              {% elsif _g3 contains _first %}{% assign _c = 'c3' %}
+              {% elsif _g4 contains _first %}{% assign _c = 'c4' %}
+              {% elsif _g5 contains _first %}{% assign _c = 'c5' %}
+              {% elsif _g6 contains _first %}{% assign _c = 'c6' %}
+              {% elsif _g7 contains _first %}{% assign _c = 'c7' %}
+              {% elsif _g8 contains _first %}{% assign _c = 'c8' %}
+              {% elsif _g9 contains _first %}{% assign _c = 'c9' %}
+              {% else %}{% assign _c = 'c10' %}{% endif %}
+              <span class="tag-chip {{ _c }}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
             {% endfor %}
           </span>
         {% endif %}
