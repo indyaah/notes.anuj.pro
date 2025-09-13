@@ -93,6 +93,9 @@ a:hover { text-decoration: underline; }
 .nav a:hover { color: var(--link); background: var(--highlight); text-decoration: none; }
 .nav a.active { color: var(--link); background: var(--highlight); font-weight: 600; border-left-color: var(--link); }
 
+/* Sidebar separator */
+.nav hr { border: 0; border-top: 1px solid var(--border); margin: 0.5rem 0; }
+
 /* Collapsible sections */
 .nav li.has-children > .tree-toggle {
   cursor: pointer;

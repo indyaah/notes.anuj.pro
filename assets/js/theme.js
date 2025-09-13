@@ -135,14 +135,20 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'tree-toggle';
-      btn.textContent = directLink ? (directLink.textContent || 'Section').trim() : (labelText || 'Section');
+      // Show only caret icon via CSS; avoid duplicating link text
+      btn.textContent = '';
+      var btnLabel = directLink ? (directLink.textContent || 'Section').trim() : (labelText || 'Section');
+      btn.setAttribute('aria-label', 'Toggle ' + btnLabel);
+      btn.setAttribute('title', 'Toggle ' + btnLabel);
 
       if(directLink){
         li.insertBefore(btn, directLink);
       } else {
         li.insertBefore(btn, sub);
       }
-      btn.setAttribute('aria-expanded', 'false');
+      // Expanded by default
+      li.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
     });
 
     // Auto-expand ancestors of the active link
