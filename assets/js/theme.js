@@ -135,9 +135,9 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'tree-toggle';
-      // Show only caret icon via CSS; avoid duplicating link text
-      btn.textContent = '';
       var btnLabel = directLink ? (directLink.textContent || 'Section').trim() : (labelText || 'Section');
+      // If there is a direct link, show caret-only to avoid duplicate text; otherwise include the label text
+      btn.textContent = directLink ? '' : btnLabel;
       btn.setAttribute('aria-label', 'Toggle ' + btnLabel);
       btn.setAttribute('title', 'Toggle ' + btnLabel);
 
