@@ -5,6 +5,7 @@ description: >-
 
 url: https://nots.anuj.pro
 baseurl: ""
+permalink: pretty
 
 # Using a custom local theme
 
