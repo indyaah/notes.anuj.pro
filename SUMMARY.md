@@ -1,6 +1,7 @@
 # Summary
 
 - [Home](/)
+- [All tags](/tags/all/)
 - Notes
   - [Overview](/notes/)
   - Philosophy

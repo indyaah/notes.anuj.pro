@@ -223,11 +223,45 @@
     });
   }
 
+  function setupTagsFilterPage(){
+    var path = window.location.pathname.replace(/\/index\.html$/, '/');
+    if(!/\/tags\/$/.test(path)) return;
+
+    var container = document.getElementById('tag-view-container');
+    if(!container) return;
+
+    var sections = Array.prototype.slice.call(container.querySelectorAll('.tag-section'));
+    var hint = document.getElementById('tag-hint');
+
+    function showForHash(){
+      var hash = window.location.hash || '';
+      var m = hash.match(/^#tag-([a-z0-9\-]+)/i);
+      var targetId = m ? ('tag-' + m[1] + '-section') : null;
+      var shown = false;
+      sections.forEach(function(sec){
+        if(targetId && sec.id === targetId){
+          sec.classList.remove('hidden');
+          shown = true;
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+      if(hint){
+        if(shown) hint.classList.add('hidden'); else hint.classList.remove('hidden');
+      }
+    }
+
+    sections.forEach(function(sec){ sec.classList.add('hidden'); });
+    showForHash();
+    window.addEventListener('hashchange', showForHash);
+  }
+
   ready(function(){
     buildAnchorsAndToc();
     highlightActiveSidebarLink();
     buildCollapsibleSidebarTree();
     sidebarSearch();
     persistSidebarScroll();
+    setupTagsFilterPage();
   });
 })();
