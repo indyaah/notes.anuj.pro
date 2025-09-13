@@ -256,6 +256,43 @@
     window.addEventListener('hashchange', showForHash);
   }
 
+  function setupMermaid(){
+    try {
+      var sel = 'pre > code.language-mermaid, code.language-mermaid';
+      var codes = Array.prototype.slice.call(document.querySelectorAll(sel));
+      if(!codes.length) return;
+
+      codes.forEach(function(code){
+        var txt = code.textContent;
+        var pre = code.closest('pre');
+        var wrapper = code.closest('div.highlight') || pre || code;
+        var container = document.createElement('div');
+        container.className = 'mermaid';
+        container.textContent = txt;
+        if(wrapper && wrapper.parentNode){
+          wrapper.parentNode.replaceChild(container, wrapper);
+        }
+      });
+
+      function tryInit(attempt){
+        attempt = attempt || 0;
+        if(window.mermaid && typeof window.mermaid.initialize === 'function'){
+          try {
+            window.mermaid.initialize({ startOnLoad: false });
+            if(typeof window.mermaid.run === 'function'){
+              window.mermaid.run({ querySelector: '.mermaid' });
+            } else if(typeof window.mermaid.init === 'function'){
+              window.mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+            }
+          } catch(_){ }
+          return;
+        }
+        if(attempt < 20){ setTimeout(function(){ tryInit(attempt+1); }, 150); }
+      }
+      tryInit(0);
+    } catch(_){ /* noop */ }
+  }
+
   ready(function(){
     buildAnchorsAndToc();
     highlightActiveSidebarLink();
@@ -263,5 +300,6 @@
     sidebarSearch();
     persistSidebarScroll();
     setupTagsFilterPage();
+    setupMermaid();
   });
 })();

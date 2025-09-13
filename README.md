@@ -52,3 +52,26 @@ If this repository is connected to GitHub Pages, enable Pages to build from the 
 - Refine `SUMMARY.md` and front matter `order` fields for better navigation.
 - Add custom pages (About, Topics overview, etc.).
 - Iterate on look and feel (colors, fonts, logo) using the theme options.
+
+
+## Diagrams (Mermaid)
+
+Mermaid diagrams are supported (client-side, like the original theme).
+
+Usage in any note or post:
+
+```
+```mermaid
+flowchart TD
+  A[Start] --> B{Decision}
+  B -- Yes --> C[Do thing]
+  B -- No  --> D[Do other]
+  C --> E[End]
+  D --> E[End]
+```
+```
+
+Notes:
+- Enabled by default. To disable globally, set `mermaid: false` in `_config.yml`.
+- Works with fenced code blocks labeled `mermaid`.
+- Rendering occurs in the browser; the original code fence is replaced by a diagram at runtime.

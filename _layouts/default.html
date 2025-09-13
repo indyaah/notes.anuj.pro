@@ -7,6 +7,9 @@
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
+  {% if site.mermaid != false %}
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  {% endif %}
 </head>
 <body>
   <header class="topbar">

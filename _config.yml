@@ -19,6 +19,9 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 
+# Enable Mermaid diagrams (client-side rendering)
+mermaid: true
+
 # Collections
 collections:
   notes:
