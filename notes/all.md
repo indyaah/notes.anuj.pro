@@ -15,7 +15,16 @@ Browse all notes grouped by top-level topic.
   {% assign _found = 0 %}
   {% for p in _pages %}
     {% if p.url and p.url contains '/notes/philosophy/' and p.url != '/notes/philosophy/' and p.title %}
-      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        {% if p.tags and p.tags.size > 0 %}
+          <span class="tag-list-inline">
+            {% for t in p.tags %}
+              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </li>
       {% assign _found = _found | plus: 1 %}
     {% endif %}
   {% endfor %}
@@ -31,7 +40,16 @@ Browse all notes grouped by top-level topic.
   {% assign _found = 0 %}
   {% for p in _pages %}
     {% if p.url and p.url contains '/notes/process/' and p.url != '/notes/process/' and p.title %}
-      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        {% if p.tags and p.tags.size > 0 %}
+          <span class="tag-list-inline">
+            {% for t in p.tags %}
+              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </li>
       {% assign _found = _found | plus: 1 %}
     {% endif %}
   {% endfor %}
@@ -47,7 +65,16 @@ Browse all notes grouped by top-level topic.
   {% assign _found = 0 %}
   {% for p in _pages %}
     {% if p.url and p.url contains '/notes/tools/' and p.url != '/notes/tools/' and p.title %}
-      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        {% if p.tags and p.tags.size > 0 %}
+          <span class="tag-list-inline">
+            {% for t in p.tags %}
+              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </li>
       {% assign _found = _found | plus: 1 %}
     {% endif %}
   {% endfor %}
@@ -63,7 +90,16 @@ Browse all notes grouped by top-level topic.
   {% assign _found = 0 %}
   {% for p in _pages %}
     {% if p.url and p.url contains '/notes/effectiveness/' and p.url != '/notes/effectiveness/' and p.title %}
-      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      <li>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        {% if p.tags and p.tags.size > 0 %}
+          <span class="tag-list-inline">
+            {% for t in p.tags %}
+              <span class="tag-chip {% cycle 'tagcolor-all': 'c1','c2','c3','c4','c5','c6','c7','c8','c9','c10' %}"><a href="{{ '/tags/' | relative_url }}#tag-{{ t | slugify }}">{{ t }}</a></span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </li>
       {% assign _found = _found | plus: 1 %}
     {% endif %}
   {% endfor %}

@@ -146,9 +146,8 @@
       } else {
         li.insertBefore(btn, sub);
       }
-      // Expanded by default
-      li.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
+      // Default collapsed
+      btn.setAttribute('aria-expanded', 'false');
     });
 
     // Auto-expand ancestors of the active link

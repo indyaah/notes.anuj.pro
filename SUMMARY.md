@@ -1,6 +1,5 @@
 # Summary
 
-- [Overview](/notes/)
 - Philosophy
   - [On trade-offs](/notes/philosophy/trade-offs/)
 - Process

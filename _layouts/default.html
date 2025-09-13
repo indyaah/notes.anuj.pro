@@ -20,7 +20,6 @@
       </div>
       <nav class="topbar-nav">
         <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/notes/' | relative_url }}">Notes</a>
         <a href="{{ '/feed.xml' | relative_url }}" title="RSS" aria-label="RSS">RSS</a>
         {% if site.github and site.github.repository_url %}
           <a href="{{ site.github.repository_url }}" target="_blank" rel="noopener">GitHub</a>
@@ -32,7 +31,6 @@
     <aside class="sidebar">
       <div class="brand">
         <a class="brand-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        {% if site.description %}<div class="brand-desc">{{ site.description }}</div>{% endif %}
       </div>
       {% include sidebar.html %}
     </aside>

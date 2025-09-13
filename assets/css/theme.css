@@ -197,6 +197,24 @@ a:hover { text-decoration: underline; }
 .note-tag a { display: inline-block; font-size: 0.85rem; color: #1f2937; background: #eef2f7; border: 1px solid var(--border); border-radius: 999px; padding: 0.1rem 0.5rem; }
 .note-tag a:hover { background: var(--highlight); text-decoration: none; }
 
+/* Inline tag chips (used on All notes / Home) */
+.tag-list-inline { display: inline-flex; gap: 0.3rem; flex-wrap: wrap; margin-left: 0.4rem; vertical-align: middle; }
+.tag-chip { display: inline-block; border-radius: 999px; }
+.tag-chip a { display: inline-block; font-size: 0.75rem; padding: 0.05rem 0.45rem; border-radius: 999px; border: 1px solid transparent; text-decoration: none; }
+.tag-chip a:hover { text-decoration: none; opacity: 0.9; }
+
+/* Cheerful pastel palette */
+.tag-chip.c1 a { background: #eaf7ff; border-color: #bde0ff; color: #0b3954; }
+.tag-chip.c2 a { background: #eafff5; border-color: #b9f3d0; color: #0b4f2f; }
+.tag-chip.c3 a { background: #fff4ea; border-color: #ffd8b5; color: #5d3b09; }
+.tag-chip.c4 a { background: #f3ecff; border-color: #d9c9ff; color: #442a7a; }
+.tag-chip.c5 a { background: #ffecf2; border-color: #ffc9dc; color: #7a1e45; }
+.tag-chip.c6 a { background: #f0fff4; border-color: #c6f6d5; color: #1a4d2e; }
+.tag-chip.c7 a { background: #fffbe6; border-color: #ffe58f; color: #614700; }
+.tag-chip.c8 a { background: #e6fffb; border-color: #87e8de; color: #00474f; }
+.tag-chip.c9 a { background: #f0f5ff; border-color: #adc6ff; color: #102a75; }
+.tag-chip.c10 a { background: #fdf2f8; border-color: #f8b4d9; color: #702459; }
+
 .related-notes { margin-top: 2rem; }
 .related-notes h2 { font-size: 1.1rem; margin: 0 0 0.5rem 0; }
 .related-notes ul { list-style: disc; padding-left: 1.25rem; margin: 0.25rem 0 0 0; }
