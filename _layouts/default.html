@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a class="topbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        {% if site.description %}<span class="topbar-desc">{{ site.description }}</span>{% endif %}
+      </div>
+      <nav class="topbar-nav">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/notes/' | relative_url }}">Notes</a>
+        <a href="{{ '/feed.xml' | relative_url }}" title="RSS" aria-label="RSS">RSS</a>
+        {% if site.github and site.github.repository_url %}
+          <a href="{{ site.github.repository_url }}" target="_blank" rel="noopener">GitHub</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <a class="brand-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        {% if site.description %}<div class="brand-desc">{{ site.description }}</div>{% endif %}
+      </div>
+      {% include sidebar.html %}
+    </aside>
+    <div class="main">
+      <div class="main-inner">
+        <main class="content" id="main-content">
+          {{ content }}
+          <footer class="site-footer">
+            <p>© {{ site.time | date: '%Y' }} {{ site.title }}</p>
+          </footer>
+        </main>
+        {% if page.toc != false %}
+        <!-- Set `toc: false` in page/post front matter to disable the on-page TOC -->
+        <aside class="toc" id="toc">
+          <div class="toc-title">On this page</div>
+          <nav id="page-toc"></nav>
+        </aside>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/theme.js' | relative_url }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+title: Engineering Notes
+email: contact@anuj.pro
+description: >-
+  A personal knowledge base for software engineering topics: philosophy, process, tools, and effectiveness.
+
+url: https://notes.anuj.pro
+baseurl: ""
+
+# Using a custom local theme
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Collections
+collections:
+  notes:
+    output: true
+    permalink: /:collection/:path/
+
+# Defaults for content types
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: page
+      toc: true
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: post
+      toc: true
+
+
+# Navigation (optional; theme can also infer from SUMMARY.md)
+# nav:
+#   - title: Home
+#     url: /
+#   - title: Notes
+#     url: /notes/
+#   - title: Posts
+#     url: /archive.html
+
+# Exclusions
+exclude:
+  - vendor
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - .idea
+  - .gitignore
+  - .DS_Store

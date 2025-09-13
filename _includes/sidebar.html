@@ -1,0 +1,16 @@
+{% assign summary = site.pages | where: "path", "SUMMARY.md" | first %}
+<div class="sidebar-controls">
+  <input type="search" id="sidebar-search" placeholder="Search…" aria-label="Filter navigation">
+</div>
+<nav class="nav" id="sidebar-nav">
+  {% if summary %}
+    <div class="nav-tree">
+      {{ summary.content | markdownify }}
+    </div>
+  {% else %}
+    <ul class="nav-tree">
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/notes/' | relative_url }}">Notes</a></li>
+    </ul>
+  {% endif %}
+</nav>

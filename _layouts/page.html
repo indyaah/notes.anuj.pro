@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<article class="page">
+  <header class="page-header">
+    <h1>{{ page.title }}</h1>
+  </header>
+  <div class="page-content">
+    {{ content }}
+
+    {% if page.tags and page.tags.size > 0 %}
+    <div class="note-tags">
+      <span class="note-tags-label">Tags:</span>
+      <ul class="note-tags-list">
+        {% for tag in page.tags %}
+          <li class="note-tag"><a href="{{ '/tags/' | relative_url }}#tag-{{ tag | slugify }}">{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if page.tags and page.tags.size > 0 %}
+    <div class="related-notes">
+      <h2>Related notes</h2>
+      <ul>
+        {% assign _count = 0 %}
+        {% assign _pages = site.pages | sort: 'title' %}
+        {% for p in _pages %}
+          {% if p.url != page.url and p.url contains '/notes/' and p.tags and p.title %}
+            {% assign _matches = 0 %}
+            {% for t in page.tags %}
+              {% if p.tags contains t %}
+                {% assign _matches = _matches | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+            {% if _matches > 0 %}
+              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+              {% assign _count = _count | plus: 1 %}
+              {% if _count >= 5 %}{% break %}{% endif %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if _count == 0 %}
+          <li><span class="a-muted">No related notes yet.</span></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</article>
