@@ -4,8 +4,6 @@ title: Engineering Notes
 permalink: /
 ---
 
-Archive:
-
 {% comment %}
   Dynamically list all top-level sections under /notes/ and their child notes.
   - Discovers section slugs from page URLs, excluding reserved "all".
