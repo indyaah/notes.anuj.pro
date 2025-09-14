@@ -21,16 +21,17 @@ layout: compress
         <a class="topbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
         {% if site.description %}<span class="topbar-desc">{{ site.description }}</span>{% endif %}
       </div>
-      <nav class="topbar-nav">
-        <form id="site-search-form" role="search" onsubmit="return false;">
+      <nav class="topbar-nav" aria-label="Main site search and theme toggle">
+        <form id="site-search-form" role="search" aria-label="Site search form" onsubmit="return false;" style="display:inline-block;vertical-align:middle;">
           <input type="search" id="site-search" placeholder="Keyword search" aria-label="Site search" autocomplete="off" />
           <div id="site-search-results" class="search-results hidden" aria-live="polite"></div>
         </form>
+        <button id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" style="margin-left:0.5rem;font-size:1.2em;background:none;border:none;cursor:pointer;vertical-align:middle;">🌙</button>
       </nav>
     </div>
   </header>
   <div class="layout">
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Main sidebar navigation">
       <div class="brand">
         <a class="brand-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
       </div>
@@ -46,9 +47,9 @@ layout: compress
         </main>
         {% if page.toc != false %}
         <!-- Set `toc: false` in page/post front matter to disable the on-page TOC -->
-        <aside class="toc" id="toc">
+        <aside class="toc" id="toc" aria-label="Table of contents">
           <div class="toc-title">On this page</div>
-          <nav id="page-toc"></nav>
+          <nav id="page-toc" aria-label="On this page navigation"></nav>
         </aside>
         {% endif %}
       </div>

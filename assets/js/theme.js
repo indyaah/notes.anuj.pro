@@ -395,7 +395,28 @@
     });
   }
 
-  ready(function(){
+  // Theme switching logic
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.title = btn.getAttribute('aria-label');
+    }
+  }
+
+  function getPreferredTheme() {
+    var stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+
+  ready(function() {
     buildAnchorsAndToc();
     highlightActiveSidebarLink();
     buildCollapsibleSidebarTree();
@@ -404,5 +425,16 @@
     setupTagsFilterPage();
     setupMermaid();
     setupSiteSearch();
+
+    // Theme toggle
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      var current = getPreferredTheme();
+      setTheme(current);
+      btn.addEventListener('click', function() {
+        var newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+    }
   });
 })();
