@@ -12,6 +12,7 @@ permalink: pretty
 # Plugins
 plugins:
   - jekyll-sitemap
+  - jekyll-minifier
 
 markdown: kramdown
 kramdown:
