@@ -170,6 +170,18 @@
       if(!btn) return;
       e.preventDefault();
       var li = btn.parentElement;
+      var isOpen = li.classList.contains('open');
+      if (!isOpen) {
+        // Collapse all other open topics
+        var openLis = tree.querySelectorAll('li.has-children.open');
+        openLis.forEach(function(openLi) {
+          if (openLi !== li) {
+            openLi.classList.remove('open');
+            var t = openLi.querySelector(':scope > .tree-toggle');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
       var open = li.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
