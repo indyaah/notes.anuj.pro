@@ -11,6 +11,6 @@ This section collects evergreen notes across a few broad topics. Each note aims 
 Topics:
 
 - [Philosophy](/notes/philosophy/)
-- [Process](/notes/process/)
+- [Process](/notes/methodologies/)
 - [Tools](/notes/tools/)
 - [Effectiveness](/notes/effectiveness/)

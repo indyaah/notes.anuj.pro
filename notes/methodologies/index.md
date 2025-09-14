@@ -1,17 +1,17 @@
 ---
 layout: page
-title: Effectiveness
-order: 40
-permalink: /notes/effectiveness/
+title: Process
+order: 20
+permalink: /notes/process/
 ---
 
-Notes on working well: time, focus, energy, and communication.
+Processes that improve outcomes through feedback, visibility, and alignment.
 
 {% assign _pages = site.pages | sort: 'title' %}
 <ul>
 {% assign _found = 0 %}
 {% for p in _pages %}
-  {% if p.url and p.url contains '/notes/effectiveness/' and p.url != '/notes/effectiveness/' and p.title %}
+  {% if p.url and p.url contains '/notes/methodologies/' and p.title %}
     <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
     {% assign _found = _found | plus: 1 %}
   {% endif %}

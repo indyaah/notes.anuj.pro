@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Anuj's Engineering Notes
+title: Engineering Notes
 permalink: /
 ---
 
