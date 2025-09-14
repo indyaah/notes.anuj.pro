@@ -4,11 +4,3 @@
 
 --- 
 
-- Philosophy
-  - [On trade-offs](/notes/philosophy/trade-offs/)
-- Process
-  - [Feedback loops](/notes/methodologies/feedback-loops/)
-- Tools
-  - [Editors and IDEs](/notes/tools/editors-and-ides/)
-- Effectiveness
-  - [Deep work for engineers](/notes/effectiveness/deep-work/)
