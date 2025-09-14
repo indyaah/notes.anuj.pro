@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AWS
+title: Kafka
 order: 9
 tags: [streaming, events, integration, tools]
 ---

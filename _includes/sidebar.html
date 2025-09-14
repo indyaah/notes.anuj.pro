@@ -4,72 +4,60 @@
 <nav class="nav" id="sidebar-nav">
   <div class="nav-tree">
 
+    {% comment %}
+      Dynamically build top-level sections from /notes/ without hardcoding directories.
+      - Determine unique top-level slugs from page URLs under /notes/.
+      - Exclude reserved slug "all" (handled separately at bottom).
+      - For each section, use its index page title if available; fallback to capitalized slug.
+      - List all child pages under that section (excluding the index), sorted by title.
+    {% endcomment %}
+
+    {% assign _sections_raw = '' %}
+    {% for p in site.pages %}
+      {% if p.url and p.url contains '/notes/' and p.title %}
+        {% assign _u = p.url %}
+        {% assign _rest = _u | remove_first: '/notes/' %}
+        {% assign _slug = _rest | split: '/' | first %}
+        {% if _slug and _slug != '' and _slug != 'all' %}
+          {% assign _sections_raw = _sections_raw | append: _slug | append: '|' %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% assign _section_slugs = _sections_raw | split: '|' | uniq | sort %}
+
     {% assign _pages = site.pages | sort: 'title' %}
 
     <ul>
-      <li>
-        Philosophy
-        <ul>
-          {% assign _found = 0 %}
-          {% for p in _pages %}
-            {% if p.url and p.url contains '/notes/philosophy/' and p.url != '/notes/philosophy/' and p.title %}
-              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
-              {% assign _found = _found | plus: 1 %}
+      {% for _slug in _section_slugs %}
+        {% if _slug and _slug != '' %}
+          {% assign _section_url = '/notes/' | append: _slug | append: '/' %}
+          {% assign _label = '' %}
+          {% for p in site.pages %}
+            {% if p.url == _section_url and p.title %}
+              {% assign _label = p.title %}
+              {% break %}
             {% endif %}
           {% endfor %}
-          {% if _found == 0 %}
-            <li><span class="a-muted">No notes yet.</span></li>
+          {% if _label == '' %}
+            {% assign _label = _slug | replace: '-', ' ' | capitalize %}
           {% endif %}
-        </ul>
-      </li>
-
-      <li>
-        Process
-        <ul>
-          {% assign _found = 0 %}
-          {% for p in _pages %}
-            {% if p.url and p.url contains '/notes/methodologies/' and p.title %}
-              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
-              {% assign _found = _found | plus: 1 %}
-            {% endif %}
-          {% endfor %}
-          {% if _found == 0 %}
-            <li><span class="a-muted">No notes yet.</span></li>
-          {% endif %}
-        </ul>
-      </li>
-
-      <li>
-        Tools
-        <ul>
-          {% assign _found = 0 %}
-          {% for p in _pages %}
-            {% if p.url and p.url contains '/notes/tools/' and p.url != '/notes/tools/' and p.title %}
-              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
-              {% assign _found = _found | plus: 1 %}
-            {% endif %}
-          {% endfor %}
-          {% if _found == 0 %}
-            <li><span class="a-muted">No notes yet.</span></li>
-          {% endif %}
-        </ul>
-      </li>
-
-      <li>
-        Effectiveness
-        <ul>
-          {% assign _found = 0 %}
-          {% for p in _pages %}
-            {% if p.url and p.url contains '/notes/effectiveness/' and p.url != '/notes/effectiveness/' and p.title %}
-              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
-              {% assign _found = _found | plus: 1 %}
-            {% endif %}
-          {% endfor %}
-          {% if _found == 0 %}
-            <li><span class="a-muted">No notes yet.</span></li>
-          {% endif %}
-        </ul>
-      </li>
+          <li>
+            {{ _label }}
+            <ul>
+              {% assign _found = 0 %}
+              {% for p in _pages %}
+                {% if p.url and p.url contains _section_url and p.url != _section_url and p.title %}
+                  <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+                  {% assign _found = _found | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if _found == 0 %}
+                <li><span class="a-muted">No notes yet.</span></li>
+              {% endif %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endfor %}
     </ul>
 
     <hr />
