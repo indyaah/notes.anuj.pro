@@ -1,16 +1,82 @@
-{% assign summary = site.pages | where: "path", "SUMMARY.md" | first %}
 <div class="sidebar-controls">
   <input type="search" id="sidebar-search" placeholder="Search…" aria-label="Filter navigation">
 </div>
 <nav class="nav" id="sidebar-nav">
-  {% if summary %}
-    <div class="nav-tree">
-      {{ summary.content | markdownify }}
-    </div>
-  {% else %}
-    <ul class="nav-tree">
-      <li><a href="{{ '/' | relative_url }}">Home</a></li>
-      <li><a href="{{ '/notes/' | relative_url }}">Notes</a></li>
+  <div class="nav-tree">
+
+    {% assign _pages = site.pages | sort: 'title' %}
+
+    <ul>
+      <li>
+        Philosophy
+        <ul>
+          {% assign _found = 0 %}
+          {% for p in _pages %}
+            {% if p.url and p.url contains '/notes/philosophy/' and p.url != '/notes/philosophy/' and p.title %}
+              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+              {% assign _found = _found | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          {% if _found == 0 %}
+            <li><span class="a-muted">No notes yet.</span></li>
+          {% endif %}
+        </ul>
+      </li>
+
+      <li>
+        Process
+        <ul>
+          {% assign _found = 0 %}
+          {% for p in _pages %}
+            {% if p.url and p.url contains '/notes/methodologies/' and p.title %}
+              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+              {% assign _found = _found | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          {% if _found == 0 %}
+            <li><span class="a-muted">No notes yet.</span></li>
+          {% endif %}
+        </ul>
+      </li>
+
+      <li>
+        Tools
+        <ul>
+          {% assign _found = 0 %}
+          {% for p in _pages %}
+            {% if p.url and p.url contains '/notes/tools/' and p.url != '/notes/tools/' and p.title %}
+              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+              {% assign _found = _found | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          {% if _found == 0 %}
+            <li><span class="a-muted">No notes yet.</span></li>
+          {% endif %}
+        </ul>
+      </li>
+
+      <li>
+        Effectiveness
+        <ul>
+          {% assign _found = 0 %}
+          {% for p in _pages %}
+            {% if p.url and p.url contains '/notes/effectiveness/' and p.url != '/notes/effectiveness/' and p.title %}
+              <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+              {% assign _found = _found | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          {% if _found == 0 %}
+            <li><span class="a-muted">No notes yet.</span></li>
+          {% endif %}
+        </ul>
+      </li>
     </ul>
-  {% endif %}
+
+    <hr />
+
+    <ul>
+      <li><a href="{{ '/notes/all/' | relative_url }}">All notes</a></li>
+      <li><a href="{{ '/tags/all/' | relative_url }}">All tags</a></li>
+    </ul>
+  </div>
 </nav>

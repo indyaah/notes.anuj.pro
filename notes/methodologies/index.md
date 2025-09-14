@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Process
+title: Methodologies
 order: 20
 permalink: /notes/process/
 ---
