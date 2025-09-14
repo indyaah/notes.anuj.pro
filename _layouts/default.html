@@ -9,7 +9,6 @@ layout: compress
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines }}">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
   {% if site.mermaid != false %}
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
@@ -23,11 +22,10 @@ layout: compress
         {% if site.description %}<span class="topbar-desc">{{ site.description }}</span>{% endif %}
       </div>
       <nav class="topbar-nav">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/feed.xml' | relative_url }}" title="RSS" aria-label="RSS">RSS</a>
-        {% if site.github and site.github.repository_url %}
-          <a href="{{ site.github.repository_url }}" target="_blank" rel="noopener">GitHub</a>
-        {% endif %}
+        <form id="site-search-form" role="search" onsubmit="return false;">
+          <input type="search" id="site-search" placeholder="Keyword search" aria-label="Site search" autocomplete="off" />
+          <div id="site-search-results" class="search-results hidden" aria-live="polite"></div>
+        </form>
       </nav>
     </div>
   </header>

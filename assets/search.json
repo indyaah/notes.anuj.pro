@@ -1,0 +1,19 @@
+---
+layout: null
+---
+[
+{% assign first = true %}
+{% for p in site.pages %}
+  {% if p.title and p.content and p.url %}
+    {% assign _url = p.url | replace: '/index.html', '/' %}
+    {% if _url contains '/notes/' or _url == '/' or _url contains '/tags/' %}
+      {% if first %}{% assign first = false %}{% else %},{% endif %}
+      {
+        "title": {{ p.title | jsonify }},
+        "url": {{ _url | relative_url | jsonify }},
+        "content": {{ p.content | strip_html | strip_newlines | jsonify }}
+      }
+    {% endif %}
+  {% endif %}
+{% endfor %}
+]
