@@ -69,10 +69,31 @@
       if(!a) return;
       var id = a.getAttribute('href').slice(1);
       var target = document.getElementById(id);
-      if(!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.replaceState(null, '', '#' + id);
+
+      // Special handling for tags page anchors: #tag-<slug> or #tag-<slug>-section
+      var m = id && id.match(/^tag-([a-z0-9\-]+)(?:-section)?$/i);
+      if(m){
+        e.preventDefault();
+        var slug = m[1];
+        var newHash = '#tag-' + slug; // normalize to simple form
+        if(window.location.hash !== newHash){
+          window.location.hash = newHash; // triggers hashchange -> showForHash()
+        } else {
+          // If already at this hash, force update and scroll
+          if(typeof window.showForHash === 'function') window.showForHash();
+          var heading = document.getElementById('tag-' + slug);
+          if(heading){ heading.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }
+        return;
+      }
+
+      // Only smooth scroll if the target is a heading (not a tag section)
+      if(target && (target.tagName.match(/^H[1-6]$/i) || target.classList.contains('heading-anchor'))){
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      }
+      // Otherwise, allow default behavior
     });
 
     // Scrollspy
@@ -252,11 +273,17 @@
 
     function showForHash(){
       var hash = window.location.hash || '';
-      var m = hash.match(/^#tag-([a-z0-9\-]+)/i);
-      var targetId = m ? ('tag-' + m[1] + '-section') : null;
+      var m = hash.match(/^#tag-([a-z0-9\-]+)(-section)?$/i);
+      var slug = m ? m[1] : null;
       var shown = false;
+      var targetSection = null;
+      var targetHeading = null;
+      if (slug) {
+        targetSection = document.getElementById('tag-' + slug + '-section');
+        targetHeading = document.getElementById('tag-' + slug);
+      }
       sections.forEach(function(sec){
-        if(targetId && sec.id === targetId){
+        if(targetSection && sec === targetSection){
           sec.classList.remove('hidden');
           shown = true;
         } else {
@@ -266,7 +293,15 @@
       if(hint){
         if(shown) hint.classList.add('hidden'); else hint.classList.remove('hidden');
       }
+      // Always scroll to the revealed tag heading if present
+      if(targetSection && targetHeading && !targetSection.classList.contains('hidden')){
+        setTimeout(function(){
+          targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
+      }
     }
+    // Attach to window for global access
+    window.showForHash = showForHash;
 
     sections.forEach(function(sec){ sec.classList.add('hidden'); });
     showForHash();
